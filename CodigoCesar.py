@@ -2,7 +2,11 @@
 """
 Created on Tue Aug 29 16:32:39 2023
 
-@author: Esteban VC
+@author: Equipo #4
+
+= Santiango Salazar Avendano
+= Sebastian Rios Roman
+= Esteban Vásquez Cano
 """
 
 def codificar_mensaje(mensaje, desplazamiento=3):
@@ -51,9 +55,9 @@ def decodificar_mensaje(mensaje, desplazamiento=3):
     
     return mensaje_decodificado
 
-def ingresar_numero_entero_positivo(mensaje):
+def ingresar_numero_int_positivo(mensaje):
     bandera = 0
-    while (bandera == 0):
+    while bandera == 0:
         numero = int(input(mensaje))
         if numero >= 0:
             bandera = 1
@@ -62,15 +66,22 @@ def ingresar_numero_entero_positivo(mensaje):
     return numero
 
 print('Este script codifica o decodifica un mensaje.')
-opcion = input('Ingrese | c | si quiere codificar un mensaje o | d | si quiere decodificar: ').lower()
 mensaje = input('Ingrese el mensaje a codificar o decodificar: ')
-desplazamiento = ingresar_numero_entero_positivo('Ingrese el valor de desplazamiento: ')
+desplazamiento = ingresar_numero_int_positivo('Ingrese el valor de desplazamiento: ')
+opcion = input('Ingrese | c | si quiere codificar un mensaje o | d | si quiere decodificar: ').lower()
 
-if opcion == 'd':
-    mensaje_decodificado = decodificar_mensaje(mensaje, desplazamiento)
-    print("Mensaje decodificado:", mensaje_decodificado)
-elif opcion == 'c':
-    mensaje_codificado = codificar_mensaje(mensaje, desplazamiento)
-    print("Mensaje codificado:", mensaje_codificado)
-else: 
-    print('Debe ingresar una opcion valida.')
+bandera = 0 
+
+while bandera == 0:    
+    
+    if opcion == 'd':
+        mensaje_decodificado = decodificar_mensaje(mensaje, desplazamiento)
+        print(f"Mensaje decodificado: {mensaje_decodificado}")
+        bandera = 1
+    elif opcion == 'c':
+        mensaje_codificado = codificar_mensaje(mensaje, desplazamiento)
+        print(f"Mensaje codificado: {mensaje_codificado}" )
+        bandera = 1
+    else: 
+        print('Debe ingresar una opcion valida.')
+        opcion = input('Ingrese | c | si quiere codificar un mensaje o | d | si quiere decodificar: ').lower()
