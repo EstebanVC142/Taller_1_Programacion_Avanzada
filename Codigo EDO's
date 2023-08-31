@@ -1,6 +1,4 @@
-import numpy as np
-
-# Función para resolver la EDO utilizando el método de Euler
+#Función para resolver la EDO utilizando el método de Euler
 def euler_method(func, y0, x_values, h):
     y_values = [y0]
     for i in range(1, len(x_values)):
@@ -10,23 +8,40 @@ def euler_method(func, y0, x_values, h):
         y_values.append(y_new)
     return y_values
 
-# Solicitar datos al usuario
-equation = input("Ingrese la ecuación diferencial (en términos de x e y): ")
+#Funcion para que la ecuacion solo reciba los terminos de X y Y
+def validar_ecuacion(equation):
+    for char in equation:
+        if char.isalpha() and char != 'x' and char != 'y':
+            return False
+    return True
+
+#Solicitar datos al usuario
+while True:
+    equation = input("Ingrese la ecuación diferencial (en términos de X y Y): ")
+    if validar_ecuacion(equation):
+        print("Ecuación válida")
+        break
+    else:
+        print("Ecuación no válida. Solo se permiten las letras 'X' y 'Y'. Intenta de nuevo.")
+    
+   
 y0 = float(input("Ingrese el valor inicial de y: "))
 x_start = float(input("Ingrese el valor inicial de x: "))
 x_end = float(input("Ingrese el valor final de x: "))
 step_size = float(input("Ingrese el tamaño del paso (h): "))
 
-# Generar valores de x para la discretización
+#Generar valores de x 
 x_values = [x_start + i * step_size for i in range(int((x_end - x_start) / step_size) + 1)]
 
-# Resolver la EDO utilizando el método de Euler
+#Resolver la EDO utilizando el método de Euler
 y_values = euler_method(equation, y0, x_values, step_size)
 
 print("Tabla de Discretización:")
 print("------------------------")
 print("   x     |     y")
 print("------------------------")
-for x, y in zip(x_values, y_values):
-    print(f"{x:.1f}  |  {y:.4f}")
+for i in range(len(x_values)):
+    x = x_values[i]
+    y = y_values[i]
+    print(f"{x:.1f}  \t |  {y:.4f}")
 print("------------------------")
